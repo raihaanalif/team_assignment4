@@ -25,6 +25,22 @@ def show_table(db):
             for data in result:
                 print("{:<8} {:<20} {:<8} {:<8} {:<8} {:<8} {:<10} {:<10}".format(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]))
             print("="*100)
+        elif int(read) == 2:
+            print("Cari Data Siswa")
+            print("#"*100)
+            nama = input("Masukkan nama siswa yang ingin dicari: ")
+            cursor.execute("select * from students where name = %s", (nama,))
+            result = cursor.fetchall()
+            if result:
+                print("Ditemukan data siswa sebanyak {} data".format(len(result)))
+                print("="*100)
+                print("{:<8} {:<20} {:<8} {:<8} {:<8} {:<8} {:<10} {:<10}".format("ID", "Nama", "Umur", "Kelas", "IPA", "Math", "B.Inggris", "B.Indonesia"))
+                for data in result:
+                    print("{:<8} {:<20} {:<8} {:<8} {:<8} {:<8} {:<10} {:<10}".format(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]))
+                print("="*100)
+            else:
+                print("Data siswa tidak ditemukan")
+                print("#"*100)
     cursor.close()
     db.close()
     return None
