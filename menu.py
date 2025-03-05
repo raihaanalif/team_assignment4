@@ -20,7 +20,8 @@ def main(db):
             system.update_data(db)
             # print("Update Data Siswa")
         elif menu == 4:
-            print("Hapus Data Siswa")
+            system.delete_data(db)
+            # print("Hapus Data Siswa")
         elif menu == 5:
             print("Anda berhasil logout")
             break

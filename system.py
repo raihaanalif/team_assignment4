@@ -143,3 +143,39 @@ def update_data(db):
         print("Data siswa tidak ditemukan")
     cursor.close()
     db.close()
+
+def delete_data(db):
+    if not db.is_connected():
+        db.reconnect()
+    cursor = db.cursor()
+    print("Hapus Data Siswa")
+    print("#"*100)
+    print("{:<8} {:<20} {:<8} {:<8} {:<8} {:<8} {:<10} {:<10}".format("ID", "Nama", "Umur", "Kelas", "IPA", "Math", "B.Inggris", "B.Indonesia"))
+    cursor.execute("select * from students")
+    result = cursor.fetchall()
+    for data in result:
+        print("{:<8} {:<20} {:<8} {:<8} {:<8} {:<8} {:<10} {:<10}".format(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]))
+    id = input("Masukkan id siswa yang ingin dihapus: ")
+    cursor.execute("select * from students where student_id = %s", (id,))
+    result = cursor.fetchone()
+    if result:
+        print("Data Siswa:")
+        print("="*100)
+        print("{:<8} {:<20} {:<8} {:<8} {:<8} {:<8} {:<10} {:<10}".format("ID", "Nama", "Umur", "Kelas", "IPA", "Math", "B.Inggris", "B.Indonesia"))
+        print("{:<8} {:<20} {:<8} {:<8} {:<8} {:<8} {:<10} {:<10}".format(result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7]))
+        print("="*100)
+        konfirmasi = input("Apakah anda yakin ingin menghapus data siswa ini? (Y/N): ")
+        if konfirmasi.lower() == "y":
+            cursor.execute("delete from students where student_id = %s", (id,))
+            db.commit()
+            print("Data siswa berhasil dihapus")
+            print("#"*100)
+        else:
+            print("Data siswa tidak jadi dihapus")
+            print("#"*100)
+    else:
+        print("Data siswa tidak ditemukan")
+        print("#"*100)
+    cursor.close()
+    db.close()
+    return None
