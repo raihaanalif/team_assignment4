@@ -1,4 +1,4 @@
-# team-assignment3
+# team-assignment4
 
 - Perhatiin connect.py, jangan lupa diubah sesuai dengan konfigurasi mysql laptop masing masing
 - Untuk databases bebas mau dinamain apa aja.
