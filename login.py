@@ -10,7 +10,7 @@ def login_main(mydb):
         
         userid = input("Masukkan USER ID anda: ")
         password = input("Masukkan kata sandi anda: ")
-
+    
         mycursor = mydb.cursor()
         sql = "select * from users where username = %s and password = %s"
         val = (userid, password)
