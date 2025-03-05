@@ -14,12 +14,11 @@ def main(db):
         if menu == 1:
             system.show_table(db)
         elif menu == 2:
-
             system.create_data(db)
-
             # print("Tambah Data Siswa")
         elif menu == 3:
-            print("Update Data Siswa")
+            system.update_data(db)
+            # print("Update Data Siswa")
         elif menu == 4:
             print("Hapus Data Siswa")
         elif menu == 5:
